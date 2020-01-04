@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Add New Contact</h1>
+<form method="POST" >
+    {% csrf_token %}
+
+    <label for="contact_username">Enter your username</label>
+    <input type="text" id="contact_username" name="contact_username"><br><br>
+
+    <label for="contact_password">Enter your password</label>
+    <input type="password" id="contact_password" name="contact_password"><br><br>
+
+    {{ form.as_p }}
+
+<!--    <label for="contact_name">Enter your name</label>-->
+<!--    <input type="text" id="contact_name"><br><br>-->
+
+<!--    <label for="contact_address">Enter your address</label>-->
+<!--    <input type="text" id="contact_address"><br><br>-->
+
+<!--    <label for="contact_phone">Enter your phone number</label>-->
+<!--    <input type="text" id="contact_phone"><br><br>-->
+
+<!--    <label for="contact_jobTitle">Enter your job title</label>-->
+<!--    <input type="text" id="contact_jobTitle"><br><br>-->
+
+    <button>Submit</button>
+
+</form>
+</body>
+</html>
