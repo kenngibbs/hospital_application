@@ -8,7 +8,7 @@
 <h1>Add New Contact</h1>
 <form method="POST" >
     {% csrf_token %}
-
+    <h3>{{ error }}</h3>
     <label for="contact_username">Enter your username</label>
     <input type="text" id="contact_username" name="contact_username"><br><br>
 

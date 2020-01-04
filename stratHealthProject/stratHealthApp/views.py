@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Contact, Hospital
 from .forms import ContactForm
@@ -13,28 +13,37 @@ def index(request):
 
 
 def new_contact(request):
+    context = {
+        "form": ContactForm()
+    }
     """ GET: Render the information for a new contact
         POST:
             1) Creates a new django auth User
             2) Creates and saves the one to one relationship to the User
             3) Adds the many to many relationship of hospitals to the contact """
     if request.method == "POST":
-        # FIXME Breaks when you use an existing username. Add validation.
-        new_django_auth_user = User.objects.create_user(
-            username=request.POST["contact_username"],
-            email="",
-            password=request.POST["contact_password"])
+        # Checks to see if the username already exists. If so, adds an error message to page
+        if User.objects.filter(username=request.POST["contact_username"]).exists():
+            context["error"] = "Please choose a different username"
+        else:
+            new_django_auth_user = User.objects.create_user(
+                username=request.POST["contact_username"],
+                email="",
+                password=request.POST["contact_password"])
 
-        new_contact_instance = Contact(
-            contact_djangoUser=new_django_auth_user,
-            contact_name=request.POST["contact_name"],
-            contact_address=request.POST["contact_address"],
-            contact_phone=request.POST["contact_phone"],
-            contact_jobTitle=request.POST["contact_jobTitle"],
-        )
-        new_contact_instance.save()
+            new_contact_instance = Contact(
+                contact_djangoUser=new_django_auth_user,
+                contact_name=request.POST["contact_name"],
+                contact_address=request.POST["contact_address"],
+                contact_phone=request.POST["contact_phone"],
+                contact_jobTitle=request.POST["contact_jobTitle"],
+            )
 
-        contact_hospital_select_queryset = Hospital.objects.filter(pk__in=request.POST.getlist("contact_hospitalGroup"))
-        new_contact_instance.contact_hospitalGroup.set(contact_hospital_select_queryset)
+            new_contact_instance.save()
 
-    return render(request, "startHealthApp/new_contact.html", {"form": ContactForm()})
+            contact_hospital_select_queryset = Hospital.objects.filter(pk__in=request.POST.getlist("contact_hospitalGroup"))
+            new_contact_instance.contact_hospitalGroup.set(contact_hospital_select_queryset)
+
+            return redirect("index")
+
+    return render(request, "startHealthApp/new_contact.html", context)
