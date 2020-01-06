@@ -15,6 +15,7 @@ urlpatterns = [
 
     path('', views.index, name="index"),
     path('new_contact/', views.new_contact, name='new_contact'),
+    path('log_user_out/', views.log_user_out, name='log_user_out'),
 
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Welcome to Strategic Health</h1>
+<h3>Log In</h3>
+<form method="POST">
+    {% csrf_token %}
+    <h3>{{ error }}</h3>
+    <label for="django_username">Enter your username</label>
+    <input type="text" id="django_username" name="django_username">
+
+    <label for="django_password">Enter your password</label>
+    <input type="password" id="django_password" name="django_password">
+
+    <button>Submit</button>
+</form>
+<a href="{% url 'new_contact' %}">Create a New User</a>
+
+</body>
+</html>

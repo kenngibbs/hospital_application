@@ -9,11 +9,11 @@
 <form method="POST" >
     {% csrf_token %}
     <h3>{{ error }}</h3>
-    <label for="contact_username">Enter your username</label>
-    <input type="text" id="contact_username" name="contact_username"><br><br>
+    <label for="django_username">Enter your username</label>
+    <input type="text" id="django_username" name="django_username"><br><br>
 
-    <label for="contact_password">Enter your password</label>
-    <input type="password" id="contact_password" name="contact_password"><br><br>
+    <label for="django_password">Enter your password</label>
+    <input type="password" id="django_password" name="django_password"><br><br>
 
     {{ form.as_p }}
 
