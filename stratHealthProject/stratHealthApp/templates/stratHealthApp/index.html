@@ -13,7 +13,7 @@
 
     <h2 id="logo_header">Strategic Health</h2>
 
-    <div id="home_form">
+    <div id="intro_form">
         <h2 id="home_form_label">Log In</h2>
 
         <form method="POST">
@@ -23,12 +23,12 @@
             {% endif %}
 
             <label for="django_username">Enter your username</label>
-            <input type="text" id="django_username" name="django_username" class="home_form_input">
+            <input type="text" id="django_username" name="django_username" class="form_input">
 
             <label for="django_password">Enter your password</label>
-            <input type="password" id="django_password" name="django_password" class="home_form_input">
+            <input type="password" id="django_password" name="django_password" class="form_input">
 
-            <button class="home_form_input" id="home_form_button">Submit</button>
+            <button class="form_input" id="intro_form_button">Submit</button>
         </form>
 
         <h4>OR <a href="{% url 'new_contact' %}">Create a New User</a></h4>

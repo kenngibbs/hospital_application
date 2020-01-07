@@ -4,6 +4,15 @@
   margin: 0;
 }
 
+a {
+    color: #89b640;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 body {
     background: #0b2e39;
     font-size: 1.25em;
@@ -14,6 +23,7 @@ body {
     padding: 2% 8%;
     width: 100vw;
     height: 100vh;
+    max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 10% 1fr 10%;
@@ -24,7 +34,7 @@ body {
     grid-row: 1;
 }
 
-#home_form{
+#intro_form{
     grid-column: 2;
     grid-row: 2;
 
@@ -39,21 +49,22 @@ body {
     padding: 5%;
 }
 
-.home_form_input{
+.form_input{
     width: 100%;
     margin-bottom: 5%;
     font-size: 1em;
     border-radius: 15px;
 }
 
-#home_form_button{
+#intro_form_button{
     border-radius: 0px;
     align-self: center;
     font-size: 1.5em;
+    /*margin-top: 5%;*/
 }
 
 #index_footer{
-    text-align: center;
+    text-align: right;
     grid-column: 1/4;
     grid-row: 3;
 

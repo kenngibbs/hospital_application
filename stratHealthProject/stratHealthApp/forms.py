@@ -15,8 +15,9 @@ class ContactForm(forms.ModelForm):
             'contact_hospital_list': "Select Hospitals You Work With:"
         }
         widgets = {
-            'contact_name': forms.TextInput(attrs={'class': 'new_contact_form'}),
-            'contact_address': forms.TextInput(attrs={'class': 'new_contact_form'}),
-            'contact_phone': forms.TextInput(attrs={'class': 'new_contact_form'}),
-            'contact_position': forms.TextInput(attrs={'class': 'new_contact_form'}),
+            'contact_name': forms.TextInput(attrs={'class': 'form_input'}),
+            'contact_address': forms.TextInput(attrs={'class': 'form_input'}),
+            'contact_phone': forms.TextInput(attrs={'class': 'form_input'}),
+            'contact_position': forms.TextInput(attrs={'class': 'form_input'}),
+            'contact_hospital_list': forms.SelectMultiple(attrs={'class': 'form_input'}),
         }

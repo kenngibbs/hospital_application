@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Title</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'stratHealthApp/css/index.css' %}">
@@ -9,59 +10,36 @@
 <body>
 
 <div id="index_container">
-    <h1>Strategic Health</h1>
-    <div id="home_form">
-        <h2>Create New User</h2>
+
+    <h2 id="logo_header">Strategic Health</h2>
+
+    <div id="intro_form">
+        <h2 id="home_form_label">Create New User</h2>
+
         <form method="POST">
             {% csrf_token %}
-            <h3>{{ error }}</h3>
+            {% if error %}
+                <h3 id="index_error">{{ error }}</h3>
+            {% endif %}
 
             <label for="django_username" >Username: </label>
-            <input type="text" id="django_username" name="django_username" ><br><br>
+            <input type="text" id="django_username" name="django_username" class="form_input">
 
             <label for="django_password">Password: </label>
-            <input type="password" id="django_password" name="django_password"><br><br>
+            <input type="password" id="django_password" name="django_password" class="form_input">
 
             {{ form.as_p }}
 
-            <button class="home_form_label home_form_input" id="home_form_button">Submit</button>
+            <button class="form_input" id="intro_form_button">Submit</button>
         </form>
 
+        <h4>OR <a href="{% url 'index' %}">Go Back Home</a></h4>
     </div>
-    <div>
-        <h2>OR <a href="{% url 'index' %}">Go Back Home</a></h2>
+
+    <div id="index_footer">
+        <p>Created By <a href="https://www.linkedin.com/in/kenngibbs/" target="_blank">Kenn Gibbs</a></p>
     </div>
 </div>
 
-<!--<h3 id="new_contact_home"><a href="{% url 'index' %}">Home</a></h3>-->
-<!--<div id="new_user_container">-->
-<!--    <h1>Add New Contact</h1>-->
-<!--    <form method="POST" >-->
-<!--        {% csrf_token %}-->
-<!--        <h3>{{ error }}</h3>-->
-<!--        <label for="django_username" >Username: </label>-->
-<!--        <input type="text" id="django_username" name="django_username" ><br><br>-->
-
-<!--        <label for="django_password">Password: </label>-->
-<!--        <input type="password" id="django_password" name="django_password"><br><br>-->
-
-<!--        {{ form.as_p }}-->
-
-<!--    &lt;!&ndash;    <label for="contact_name">Enter your name</label>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <input type="text" id="contact_name"><br><br>&ndash;&gt;-->
-
-<!--    &lt;!&ndash;    <label for="contact_address">Enter your address</label>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <input type="text" id="contact_address"><br><br>&ndash;&gt;-->
-
-<!--    &lt;!&ndash;    <label for="contact_phone">Enter your phone number</label>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <input type="text" id="contact_phone"><br><br>&ndash;&gt;-->
-
-<!--    &lt;!&ndash;    <label for="contact_jobTitle">Enter your job title</label>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <input type="text" id="contact_jobTitle"><br><br>&ndash;&gt;-->
-
-<!--        <button class="home_form_label home_form_input" id="home_form_button">Submit</button>-->
-
-<!--    </form>-->
-<!--</div>-->
 </body>
 </html>
