@@ -3,23 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="{% static 'stratHealthApp/css/index.css' %}">
 </head>
 <body>
 
-<h1>Welcome to Strategic Health</h1>
-<h3>Log In</h3>
-<form method="POST">
-    {% csrf_token %}
-    <h3>{{ error }}</h3>
-    <label for="django_username">Enter your username</label>
-    <input type="text" id="django_username" name="django_username">
+<div id="index_container">
 
-    <label for="django_password">Enter your password</label>
-    <input type="password" id="django_password" name="django_password">
+    <h2 id="logo_header">Strategic Health</h2>
 
-    <button>Submit</button>
-</form>
-<a href="{% url 'new_contact' %}">Create a New User</a>
+    <div id="home_form">
+        <h2 id="home_form_label">Log In</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {% if error %}
+                <h3 id="index_error">{{ error }}</h3>
+            {% endif %}
+
+            <label for="django_username">Enter your username</label>
+            <input type="text" id="django_username" name="django_username" class="home_form_input">
+
+            <label for="django_password">Enter your password</label>
+            <input type="password" id="django_password" name="django_password" class="home_form_input">
+
+            <button class="home_form_input" id="home_form_button">Submit</button>
+        </form>
+
+        <h4>OR <a href="{% url 'new_contact' %}">Create a New User</a></h4>
+    </div>
+
+    <div id="index_footer">
+        <p>Created By <a href="https://www.linkedin.com/in/kenngibbs/" target="_blank">Kenn Gibbs</a></p>
+    </div>
+</div>
 
 </body>
 </html>

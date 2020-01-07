@@ -1,0 +1,16 @@
+html, body{
+    background: #0b2e39;
+    color: white;
+}
+
+#index_container {
+    margin: 0% 25%;
+    text-align: center;
+    font-size: 1.25em;
+}
+
+#home_form{
+    border: 3px solid white;
+    border-radius: 15px;
+    padding: 0 5% 5%;
+}

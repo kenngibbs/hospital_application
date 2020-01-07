@@ -3,34 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stratHealthApp/css/index.css' %}">
 </head>
 <body>
-<h1>Add New Contact</h1>
-<form method="POST" >
-    {% csrf_token %}
-    <h3>{{ error }}</h3>
-    <label for="django_username">Enter your username</label>
-    <input type="text" id="django_username" name="django_username"><br><br>
 
-    <label for="django_password">Enter your password</label>
-    <input type="password" id="django_password" name="django_password"><br><br>
+<div id="index_container">
+    <h1>Strategic Health</h1>
+    <div id="home_form">
+        <h2>Create New User</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <h3>{{ error }}</h3>
 
-    {{ form.as_p }}
+            <label for="django_username" >Username: </label>
+            <input type="text" id="django_username" name="django_username" ><br><br>
 
-<!--    <label for="contact_name">Enter your name</label>-->
-<!--    <input type="text" id="contact_name"><br><br>-->
+            <label for="django_password">Password: </label>
+            <input type="password" id="django_password" name="django_password"><br><br>
 
-<!--    <label for="contact_address">Enter your address</label>-->
-<!--    <input type="text" id="contact_address"><br><br>-->
+            {{ form.as_p }}
 
-<!--    <label for="contact_phone">Enter your phone number</label>-->
-<!--    <input type="text" id="contact_phone"><br><br>-->
+            <button class="home_form_label home_form_input" id="home_form_button">Submit</button>
+        </form>
 
-<!--    <label for="contact_jobTitle">Enter your job title</label>-->
-<!--    <input type="text" id="contact_jobTitle"><br><br>-->
+    </div>
+    <div>
+        <h2>OR <a href="{% url 'index' %}">Go Back Home</a></h2>
+    </div>
+</div>
 
-    <button>Submit</button>
+<!--<h3 id="new_contact_home"><a href="{% url 'index' %}">Home</a></h3>-->
+<!--<div id="new_user_container">-->
+<!--    <h1>Add New Contact</h1>-->
+<!--    <form method="POST" >-->
+<!--        {% csrf_token %}-->
+<!--        <h3>{{ error }}</h3>-->
+<!--        <label for="django_username" >Username: </label>-->
+<!--        <input type="text" id="django_username" name="django_username" ><br><br>-->
 
-</form>
+<!--        <label for="django_password">Password: </label>-->
+<!--        <input type="password" id="django_password" name="django_password"><br><br>-->
+
+<!--        {{ form.as_p }}-->
+
+<!--    &lt;!&ndash;    <label for="contact_name">Enter your name</label>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <input type="text" id="contact_name"><br><br>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <label for="contact_address">Enter your address</label>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <input type="text" id="contact_address"><br><br>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <label for="contact_phone">Enter your phone number</label>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <input type="text" id="contact_phone"><br><br>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <label for="contact_jobTitle">Enter your job title</label>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <input type="text" id="contact_jobTitle"><br><br>&ndash;&gt;-->
+
+<!--        <button class="home_form_label home_form_input" id="home_form_button">Submit</button>-->
+
+<!--    </form>-->
+<!--</div>-->
 </body>
 </html>
