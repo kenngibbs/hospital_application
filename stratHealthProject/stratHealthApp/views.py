@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Contact, Hospital, Staff
+from .models import Contact, Hospital, Staff, Procedures
 from .forms import ContactForm
 
 # TODO: End Phase: When adding a procedure, confirm the selected hospital has the selected corresponding staff
@@ -22,6 +22,7 @@ def index(request):
 
         # Iterate through the list of all hospitals associated with the logged in contact
         for eachHospital in hospital_list:
+            highest_paid_staff_instance = 0
 
             # Get a list of all staff associated with the hospital
             staff_of_each_hospital = Staff.objects.filter(staff_hospital_list = eachHospital)
@@ -34,11 +35,40 @@ def index(request):
                 total_salary_for_each_hospital += eachStaff.staff_salary
                 if highest_paid_staff_instance.staff_salary < eachStaff.staff_salary:
                     highest_paid_staff_instance = eachStaff
+            print(eachHospital.hospital_name)
+            # Get the procedures for each hospital
+            total_procedure_cost = 0
+            highest_cost_procedure = 0
+            procedures_of_each_hospital = Procedures.objects.filter(procedure_hospital=eachHospital)
+
+            if len(procedures_of_each_hospital) > 0:
+                highest_cost_procedure = procedures_of_each_hospital[0].procedure_cost
+            for eachProcedure in procedures_of_each_hospital:
+                print(eachProcedure.procedure_name)
+                total_procedure_cost += eachProcedure.procedure_cost
+                if highest_cost_procedure < eachProcedure.procedure_cost:
+                    highest_cost_procedure = eachProcedure.procedure_cost
+
+            if len(staff_of_each_hospital) > 0:
+                salary_average = total_salary_for_each_hospital/len(staff_of_each_hospital)
+            else:
+                salary_average = 0
+            if len(procedures_of_each_hospital) > 0:
+                avg_procedure_cost = total_salary_for_each_hospital/len(staff_of_each_hospital)
+            else:
+                avg_procedure_cost = 0
+
+            print(highest_cost_procedure)
+            print(avg_procedure_cost)
 
             # Dictionary of all hospitals with their information provided.
             hospital_info_list[eachHospital.hospital_name] = {
-                "salary_average": total_salary_for_each_hospital/len(staff_of_each_hospital),
-                "highest_paid_staff": highest_paid_staff_instance
+                "hospital_address": eachHospital.hospital_address,
+                "salary_average": salary_average,
+                "highest_paid_staff": highest_paid_staff_instance,
+                "avg_procedure_cost": avg_procedure_cost,
+                "highest_cost_procedure": highest_cost_procedure,
+                "number_of_procedures": len(procedures_of_each_hospital),
             }
 
             # A list(array) of hospital objects with it's necessary information. Same information as above.
